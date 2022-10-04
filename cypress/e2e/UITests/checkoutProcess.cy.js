@@ -17,7 +17,7 @@ describe("Suite to do the Entire checkout process", () => {
 
     })
 
-    it.only("Validate elements are displayed correctly", () => {
+    it("Validate elements are displayed correctly", () => {
         inventorySaucePage.goToCart()
 
         checkout.checkElementsAreCorrectlyDisplayed()
