@@ -1,0 +1,32 @@
+{
+   "lambdatest_auth": {
+      "username": "cmagana",
+      "access_key": "Ue67dOjqTm6FUS7vsBERm1kITclNPFEugZu6DQvKHL25BthHDg"
+   },
+   "browsers": [
+      {
+         "browser": "Chrome",
+         "platform": "Windows 10",
+         "versions": [
+            "latest-1"
+         ]
+      }
+   ],
+   "run_settings": {
+      "cypress_config_file": "cypress.config.js",
+      "reporter_config_file": "base_reporter_config.json",
+      "build_name": "Code Challenge Build",
+      "parallels": 5,
+      "specs": "./cypress/e2e/UITests/addRemoveFromCart.cy.js",
+      "ignore_files": "",
+      "network": false,
+      "headless": false,
+      "npm_dependencies": {
+         "cypress": "10.0.0"
+      }
+   },
+   "tunnel_settings": {
+      "tunnel": false,
+      "tunnel_name": null
+   }
+}

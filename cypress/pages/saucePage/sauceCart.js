@@ -1,4 +1,3 @@
-require('cypress-xpath')
 class sauceCart {
     //elements from the cart
     elements = {
