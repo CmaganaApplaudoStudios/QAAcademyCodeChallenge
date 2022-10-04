@@ -40,6 +40,7 @@ describe("Login Suite", () => {
         homeSaucePage.loginPerformanceGlitchUser()
         //Checks that the span Products is visible
         inventorySaucePage.elements.titleSpan().should('have.text', 'Products')
+        //The names of the items should be visible
         inventorySaucePage.elements.itemNameDiv().should("be.visible")
     })
 

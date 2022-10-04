@@ -3,6 +3,7 @@ import sauceCart from "../../pages/saucePage/sauceCart";
 
 class checkout {
 
+    //elements of the checkout process
     elements = {
         titleCheckoutProcess: () => cy.get("span.title"),
         firstNameInput: () => cy.get("#first-name"),
@@ -24,10 +25,12 @@ class checkout {
         overviewCancelBtn : () => cy.get('#cancel')
     }
 
+    //Method to validate the check your information form
     validateCheckInformationForm(name, lastName, postalCode) {
-
+        //We check that the fields contain the corresponding text
         this.elements.titleCheckoutProcess().should('contain', 'Checkout: Your Information')
         this.elements.continueBtn().click()
+        //We check that the error message asks for the empty fields 
         this.elements.errorMessageEmptyInformationForm().should('contain', 'First Name is required')
         this.elements.firstNameInput().should('be.visible').type(name)
         this.elements.continueBtn().click()
@@ -36,29 +39,33 @@ class checkout {
         this.elements.continueBtn().click()
         this.elements.errorMessageEmptyInformationForm().should('contain', 'Postal Code is required')
         this.elements.postalCodeInput().should('be.visible').type(postalCode)
-
+        //After filling the fields we check that the values are the ones pass to the method
         this.elements.firstNameInput().invoke('val').should('eq', name)
         this.elements.lastNameInput().invoke('val').should('eq', lastName)
         this.elements.postalCodeInput().invoke('val').should('eq', postalCode)
     }
 
+    //Click on continue button
     clickContinueButton() {
         this.elements.continueBtn().click()
     }
+    //This method compares the index of the cart name item and the array Names position
     compareCartAndCheckoutItemNames(index, arrayIndex) {
         this.elements.overviewItemName().eq(index).invoke('text').should('eq', arrayIndex)
     }
-
+    //This method compares the index of the cart price item and the array prices position
     compareCartAndCheckoutItemPrices(index, arrayIndex) {
         this.elements.overviewItemPrice().eq(index).invoke('text').should('eq', arrayIndex)
     }
-
+    //This method checks the subtotal of the checkout overview
     checkSubTotalInOverview(calculatedAmount) {
+        //We first get the label text
         this.elements.summarySubtotalLabel().invoke('text').then((subtotal) => {
+            //We replace the text Item total: $ with an empty string 
             let subtotalOverview = subtotal.replace("Item total: $", '')
-
+            //Now we have to parse the text to float to compare it with the amount calculated by making the sum of the itemprices in the cart
             subtotalOverview = parseFloat(subtotalOverview)
-
+            //If the item total from overview matches the calculated amount we print the success message
             if (subtotalOverview == calculatedAmount) {
                 cy.log("Sum of pricess in Item Total Label is correct")
                 cy.log("Amount calculated was: " + calculatedAmount)
@@ -67,10 +74,15 @@ class checkout {
         })
     }
 
+    //We calculate the sum of tax plus item total and see if match with total
     checkItemTotalPlusTaxMatchTotal() {
+        //We first get the items total label
         this.elements.summarySubtotalLabel().invoke('text').then((itemsTotal) => {
+            //now we invoke the tax total label
             this.elements.summaryTaxLabel().invoke('text').then((taxTotal) => {
+                //finally we invoke the total label text
                 this.elements.summaryTotalLabel().invoke('text').then((total) => {
+                    //Now we replace the undesired text from each label and parse each text to float
                     let sumItems = itemsTotal.replace('Item total: $', '')
                     sumItems = parseFloat(sumItems)
                     let sumTaxes = taxTotal.replace('Tax: $', '')
@@ -78,6 +90,7 @@ class checkout {
                     let priceTotal = total.replace('Total: $', '')
                     priceTotal = parseFloat(priceTotal)
 
+                    //We check if the sum of taxes + items total matches the total in overview and print corresponding messages
                     if ((sumItems + sumTaxes) == priceTotal) {
                         cy.log("The total in overview is correct")
                         cy.log("Items total was: " + sumItems)
@@ -123,7 +136,7 @@ class checkout {
         this.elements.postalCodeInput().should('be.visible').type('0000')
 
         this.elements.continueBtn().should('be.visible').should('contain','Continue').click()
-        //Checking the overview screen elements
+        //Checking the overview screen elements the elemens below must be visible and contain the specified text
         this.elements.titleCheckoutProcess().should('contain.text','Checkout: Overview')
 
         this.elements.overviewDescriptionLabel().should('be.visible').should('contain','DESCRIPTION')
@@ -140,7 +153,7 @@ class checkout {
 
         this.elements.finishBtn().should('be.visible').should('contain','Finish').click()
 
-        //Cheking elements are correctly displayed in last checkout screen
+        //Cheking elements are correctly displayed in last checkout screen and must be visible and contain the specified text
         this.elements.titleCheckoutProcess().should('be.visible').should('contain','Checkout: Complete!')
 
         this.elements.completeHeader().should('be.visible').should('contain','THANK YOU FOR YOUR ORDER')
@@ -148,7 +161,7 @@ class checkout {
         this.elements.btnBackProducts().should('be.visible').should('contain','Back Home')
 
         this.elements.btnBackProducts().click()
-
+        //going back to baseurl
         cy.url('https://www.saucedemo.com/inventory.html')
     }
 

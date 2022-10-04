@@ -9,7 +9,7 @@ describe("Suite for SideBar Testing", () => {
 
     })
 
-    it.only("Clicking on about option on the sidebar and validate the url", () => {
+    it("Clicking on about option on the sidebar and validate the url", () => {
 
         //Login process
         homeSaucePage.loginStandardUser()

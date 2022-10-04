@@ -1,4 +1,5 @@
 class socialMedia {
+    //Elements from social media section
     elements = {
         twitterBtn: () => cy.get(".social_twitter"),
         facebookBtn: () => cy.get(".social_facebook"),

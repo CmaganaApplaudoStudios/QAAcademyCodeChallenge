@@ -58,11 +58,11 @@ class inventorySaucePage {
     verifyItemNotAddedToCart(index) {
         this.elements.addToCartBtn().eq(index).should('contain', 'Add to cart')
     }
-
+    //Verifies if an item is added to cart it should have the remove status
     verifyItemAddedToCart(index) {
         this.elements.removeFromCartFromInventory().eq(index).should('contain', 'Remove')
     }
-
+    //Verifies if a set of elements are added or not to the cart by his button status
     verifyAddToCartRemoveBtnStatus(amount, state) {
         if (state == "Added") {
             for (let i = 0; i < amount; i++)
@@ -72,15 +72,16 @@ class inventorySaucePage {
                 this.verifyItemNotAddedToCart(i)
         }
     }
-
+    //Verifies if the amount of the cart badge matches the amount of items added
     verifyItemAmountOnCartBadge(itemAmount) {
         this.elements.shoppingCartBadge().invoke('text').should('eq', itemAmount)
     }
 
+    //Clicks on the first add button
     clickOnAddToCart() {
         this.elements.addToCartBtn().eq(0).click()
     }
-
+    //Clicks on the first remove button
     clickRemoveFromCart() {
         this.elements.removeFromCartFromInventory().eq(0).click()
     }
