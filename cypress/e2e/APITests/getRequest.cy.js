@@ -1,3 +1,8 @@
+/// <reference types="cypress"/>
+
+import Ajv from "ajv"
+const ajv= new Ajv()
+
 describe('Suite for API Tests ',()=>{
 
     it("Get Activities",()=>{
@@ -31,7 +36,7 @@ describe('Suite for API Tests ',()=>{
 
 })
 
-    it.only("POST Activities",()=>{
+    it("POST Activities",()=>{
         for(let i =0;i<5;i++){
             cy.request({
                 method: 'POST',
@@ -54,8 +59,40 @@ describe('Suite for API Tests ',()=>{
         }
 
     })
-})
 
+    it.only("Validate schema from Books endpoint and printing headers",()=>{
+        
+        cy.request('GET','https://fakerestapi.azurewebsites.net/api/v1/Books').then((response)=>{
+                cy.fixture("bookSchema").then((bookSchema)=>{
+                    cy.log("Validating JSON Schema")
+                    const validate = ajv.compile(bookSchema)
+                    const valid = validate(response.body)
+                    if(!valid) cy.log("Fallo la validacion"+validate.errors)
+                    else cy.log("JSON Schema validated correctly")
+                })
+    })
+        
+        cy.request({
+            method: 'GET',
+            url: 'https://fakerestapi.azurewebsites.net/api/v1/Books',
+            headers:{
+                'content-type':'application/json'
+            }
+        }).then((res)=>{
+
+            cy.log("Printing response Headers")
+            cy.log(res.headers['api-supported-versions'])
+            cy.log(res.headers['content-type'])
+            cy.log(res.headers.date)
+            cy.log(res.headers.server)
+            cy.log(res.headers['transfer-encoding'])
+                     
+        })
+
+        
+    })
+
+})
 function generateRandomInteger(max) {
     return Math.floor(Math.random() * max) + 1;
 }
