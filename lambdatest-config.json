@@ -17,7 +17,7 @@
       "reporter_config_file": "base_reporter_config.json",
       "build_name": "Code Challenge Build",
       "parallels": 5,
-      "specs": "./cypress/e2e/UITests/addRemoveFromCart.cy.js",
+      "specs": "./cypress/e2e/UITests/*",
       "ignore_files": "",
       "network": false,
       "headless": false,

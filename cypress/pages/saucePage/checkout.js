@@ -1,4 +1,3 @@
-require('cypress-xpath')
 import sauceCart from "../../pages/saucePage/sauceCart";
 
 class checkout {
