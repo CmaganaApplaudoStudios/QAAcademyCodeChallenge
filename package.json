@@ -4,7 +4,7 @@
   "description": "project source folder for code challenge QA Academy",
   "main": "index.js",
   "scripts": {
-    "apiTest": "npx cypress run --spec 'cypress/e2e/APITests/getRequest.cy.js'",
+    "apiTest": "npx cypress run --headed --browser chrome --spec 'cypress/e2e/APITests/getRequest.cy.js'",
     "LambdaTest": "lambdatest-cypress run"
   },
   "author": "Carlos Magana",
