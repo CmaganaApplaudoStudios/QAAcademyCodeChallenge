@@ -23,7 +23,6 @@ describe("Login Suite", () => {
     it('Login with locked out user', () => {
         //types the credentials into the login form and click on login button
         homeSaucePage.loginLockedOutUser()
-
     })
     //This method makes the login with the problem_user credentials
     it('Login problem_user', () => {

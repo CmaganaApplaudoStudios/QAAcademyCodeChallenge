@@ -45,45 +45,54 @@ class inventorySaucePage {
         //This method opens the sidebar
         this.elements.menuBtn().click()
         //This method clicks on about option
-        this.elements.aboutSideBarOption().click()
+        this.elements.aboutSideBarOption().click({force:true})
         //Validate the url that its being redirected after click on about
         cy.url().should('eq', 'https://saucelabs.com/')
+        cy.wait(1000)
     }
 
     //makes click on the cart link
     goToCart() {
         this.elements.shoppingCartLink().click()
+        cy.wait(1000)
     }
     //Verifies that an item hasn't been added to the cart
     verifyItemNotAddedToCart(index) {
         this.elements.addToCartBtn().eq(index).should('contain', 'Add to cart')
+        cy.wait(1000)
     }
     //Verifies if an item is added to cart it should have the remove status
     verifyItemAddedToCart(index) {
         this.elements.removeFromCartFromInventory().eq(index).should('contain', 'Remove')
+        cy.wait(1000)
     }
     //Verifies if a set of elements are added or not to the cart by his button status
     verifyAddToCartRemoveBtnStatus(amount, state) {
         if (state == "Added") {
             for (let i = 0; i < amount; i++)
                 this.verifyItemAddedToCart(i)
+                cy.wait(1000)
         } else if (state == "Not Added") {
             for (let i = 0; i < amount; i++)
                 this.verifyItemNotAddedToCart(i)
+                cy.wait(1000)
         }
     }
     //Verifies if the amount of the cart badge matches the amount of items added
     verifyItemAmountOnCartBadge(itemAmount) {
         this.elements.shoppingCartBadge().invoke('text').should('eq', itemAmount)
+        cy.wait(1000)
     }
 
     //Clicks on the first add button
     clickOnAddToCart() {
         this.elements.addToCartBtn().eq(0).click()
+        cy.wait(1000)
     }
     //Clicks on the first remove button
     clickRemoveFromCart() {
         this.elements.removeFromCartFromInventory().eq(0).click()
+        cy.wait(1000)
     }
 }
 

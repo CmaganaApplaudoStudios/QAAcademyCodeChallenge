@@ -29,32 +29,39 @@ class checkout {
         //We check that the fields contain the corresponding text
         this.elements.titleCheckoutProcess().should('contain', 'Checkout: Your Information')
         this.elements.continueBtn().click()
+        cy.wait(1000)
         //We check that the error message asks for the empty fields 
         this.elements.errorMessageEmptyInformationForm().should('contain', 'First Name is required')
         this.elements.firstNameInput().should('be.visible').type(name)
         this.elements.continueBtn().click()
+        cy.wait(1000)
         this.elements.errorMessageEmptyInformationForm().should('contain', 'Last Name is required')
         this.elements.lastNameInput().should('be.visible').type(lastName)
         this.elements.continueBtn().click()
+        cy.wait(1000)
         this.elements.errorMessageEmptyInformationForm().should('contain', 'Postal Code is required')
         this.elements.postalCodeInput().should('be.visible').type(postalCode)
         //After filling the fields we check that the values are the ones pass to the method
         this.elements.firstNameInput().invoke('val').should('eq', name)
         this.elements.lastNameInput().invoke('val').should('eq', lastName)
         this.elements.postalCodeInput().invoke('val').should('eq', postalCode)
+        cy.wait(1000)
     }
 
     //Click on continue button
     clickContinueButton() {
         this.elements.continueBtn().click()
+        cy.wait(1000)
     }
     //This method compares the index of the cart name item and the array Names position
     compareCartAndCheckoutItemNames(index, arrayIndex) {
         this.elements.overviewItemName().eq(index).invoke('text').should('eq', arrayIndex)
+        cy.wait(1000)
     }
     //This method compares the index of the cart price item and the array prices position
     compareCartAndCheckoutItemPrices(index, arrayIndex) {
         this.elements.overviewItemPrice().eq(index).invoke('text').should('eq', arrayIndex)
+        cy.wait(1000)
     }
     //This method checks the subtotal of the checkout overview
     checkSubTotalInOverview(calculatedAmount) {
@@ -69,6 +76,7 @@ class checkout {
                 cy.log("Sum of pricess in Item Total Label is correct")
                 cy.log("Amount calculated was: " + calculatedAmount)
                 cy.log("Amount extracted from checkout overview was: " + subtotalOverview)
+                cy.wait(1000)
             }
         })
     }
@@ -88,18 +96,20 @@ class checkout {
                     sumTaxes = parseFloat(sumTaxes)
                     let priceTotal = total.replace('Total: $', '')
                     priceTotal = parseFloat(priceTotal)
-
+                    cy.wait(1000)
                     //We check if the sum of taxes + items total matches the total in overview and print corresponding messages
                     if ((sumItems + sumTaxes) == priceTotal) {
                         cy.log("The total in overview is correct")
                         cy.log("Items total was: " + sumItems)
                         cy.log("Taxes was: " + sumTaxes)
                         cy.log("Total is: " + priceTotal)
+                        cy.wait(1000)
                     } else if ((sumItems + sumTaxes) != priceTotal) {
                         cy.log("The total in overview is correct")
                         cy.log("Items total was: " + sumItems)
                         cy.log("Taxes was: " + sumTaxes)
                         cy.log("Total is: " + priceTotal)
+                        cy.wait(1000)
                     }
                 })
             })
@@ -107,10 +117,9 @@ class checkout {
     }
 
     checkElementsAreCorrectlyDisplayed(){
-
         //Checking that the elements from the cart are visible and contains the corresponding information
         sauceCart.elements.titleCart().should('be.visible').should('contain','Your Cart')
-
+        cy.wait(1000)
         sauceCart.elements.cartQuantityLabel().should('be.visible').should('contain','QTY')
 
         sauceCart.elements.cartDescriptionLabel().should('be.visible').should('contain','DESCRIPTION')
@@ -118,7 +127,7 @@ class checkout {
         sauceCart.elements.continueShopping().should('be.visible').should('contain','Continue Shopping')
 
         sauceCart.elements.checkoutBtn().should('be.visible').should('contain','Checkout').click()
-
+        cy.wait(1000)
         //Checking that the elements from the information label are visible and contains the corresponding information
         this.elements.titleCheckoutProcess().should('be.visible').should('contain','Checkout: Your Information')
 
@@ -129,7 +138,7 @@ class checkout {
         this.elements.lastNameInput().should('be.visible').invoke('attr','placeholder').should('eq','Last Name')
 
         this.elements.lastNameInput().should('be.visible').type('Magana')
-
+        cy.wait(1000)
         this.elements.postalCodeInput().should('be.visible').invoke('attr','placeholder').should('eq','Zip/Postal Code')
 
         this.elements.postalCodeInput().should('be.visible').type('0000')
@@ -137,7 +146,7 @@ class checkout {
         this.elements.continueBtn().should('be.visible').should('contain','Continue').click()
         //Checking the overview screen elements the elemens below must be visible and contain the specified text
         this.elements.titleCheckoutProcess().should('contain.text','Checkout: Overview')
-
+        cy.wait(1000)
         this.elements.overviewDescriptionLabel().should('be.visible').should('contain','DESCRIPTION')
 
         this.elements.overviewQuantityLabel().should('be.visible').should('contain','QTY')
@@ -147,7 +156,7 @@ class checkout {
         this.elements.summaryTaxLabel().should('be.visible').should('contain','Tax: $')
 
         this.elements.summaryTotalLabel().should('be.visible').should('contain','Total: $')
-
+        cy.wait(1000)
         this.elements.overviewCancelBtn().should('be.visible').should('contain','Cancel')
 
         this.elements.finishBtn().should('be.visible').should('contain','Finish').click()
@@ -158,10 +167,11 @@ class checkout {
         this.elements.completeHeader().should('be.visible').should('contain','THANK YOU FOR YOUR ORDER')
 
         this.elements.btnBackProducts().should('be.visible').should('contain','Back Home')
-
+        cy.wait(1000)
         this.elements.btnBackProducts().click()
         //going back to baseurl
         cy.url('https://www.saucedemo.com/inventory.html')
+        cy.wait(1000)
     }
 
 }
