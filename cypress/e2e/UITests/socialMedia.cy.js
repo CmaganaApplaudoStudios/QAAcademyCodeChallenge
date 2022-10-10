@@ -11,21 +11,21 @@ describe("Social Media Suite", () => {
     })
 
     it("Validate Facebook Button", () => {
-        //types on the field username
+        //Makes the login process
         homeSaucePage.loginStandardUser()
         //click on Facebook button and validates the url
         socialMedia.clickOnFacebook()
     })
 
     it("Validate Twitter Button", () => {
-        //types on the field username
+        //Makes the login process
         homeSaucePage.loginStandardUser()
         //click on Twitter button and validates the url
         socialMedia.clickOnTwitter()
     })
 
     it("Validate LinkedIn Button", () => {
-        //types on the field username
+        //Makes the login process
         homeSaucePage.loginStandardUser()
         //click on LinkedIn button and validates the url
         socialMedia.clickOnLinkedIn()
