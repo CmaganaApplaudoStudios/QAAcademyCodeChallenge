@@ -8,3 +8,8 @@ module.exports = defineConfig({
     },
   },
 });
+
+module.exports = {
+  projectId: "iaeat4"
+  // The rest of the Cypress config options go here...
+}
