@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "apiTest": "npx cypress run --headed --browser chrome --spec 'cypress/e2e/APITests/endpointRequests.cy.js'",
-    "LambdaTest": "lambdatest-cypress run"
+    "LambdaTest": "lambdatest-cypress run",
+    "cypressDashboardApiTest": "npx cypress run --record --key 31066357-f202-4f49-8357-cfd2fd97b1a0  --spec 'cypress/e2e/APITests/endpointRequests.cy.js'",
+    "cypressDashboardUITest":"npx cypress run --record --key 31066357-f202-4f49-8357-cfd2fd97b1a0 --spec './cypress/e2e/UITests/*'" 
   },
   "author": "Carlos Magana",
   "license": "ISC",

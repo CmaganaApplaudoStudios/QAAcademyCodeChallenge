@@ -2,14 +2,10 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   chromeWebSecurity:false,
+  projectId: "iaeat4",
   e2e: {
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
   },
 });
-
-module.exports = {
-  projectId: "iaeat4"
-  // The rest of the Cypress config options go here...
-}
