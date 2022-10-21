@@ -2,14 +2,12 @@ import homeSaucePage from "../../pages/saucePage/homeSaucePage";
 import inventorySaucePage from "../../pages/saucePage/inventorySaucePage";
 
 describe("Login Suite", () => {
-
     //Redirect us to the saucedemo.com page before every test run
     beforeEach(() => {
         cy.visit('https://www.saucedemo.com')
         cy.wait(1000)
 
     })
-
     //This method makes the login with the standard user credentials
     it('Login with Standard user', () => {
         //types the credentials into the login form and click on login button
@@ -32,7 +30,6 @@ describe("Login Suite", () => {
         inventorySaucePage.elements.titleSpan().should('have.text', 'Products')
         inventorySaucePage.elements.itemNameDiv().should("be.visible")
     })
-
     //This method makes the login with the performance_glitch_user credentials
     it('Login performance_glitch_user', () => {
         //types the credentials into the login form and click on login button
@@ -42,5 +39,4 @@ describe("Login Suite", () => {
         //The names of the items should be visible
         inventorySaucePage.elements.itemNameDiv().should("be.visible")
     })
-
 })

@@ -8,17 +8,12 @@ describe("Suite for SideBar Testing", () => {
         homeSaucePage.navigateHomePage()
 
     })
-
     it("Clicking on about option on the sidebar and validate the url", () => {
-
         //Login process
         homeSaucePage.loginStandardUser()
-
         inventorySaucePage.elements.titleSpan().should('have.text', 'Products')
         inventorySaucePage.elements.itemNameDiv().should("be.visible")
         //Click on the about option
         inventorySaucePage.clickOnAbout()
     })
-
-
 })

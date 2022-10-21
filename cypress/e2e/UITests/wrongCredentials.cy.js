@@ -1,12 +1,10 @@
 import homeSaucePage from "../../pages/saucePage/homeSaucePage";
 
 describe("Wrong Credentials Suite", () => {
-
     //Method to navigate to sauce page
     beforeEach(() => {
         homeSaucePage.navigateHomePage()
     })
-
     //Typing wrong both username and password
     it("Trying to login with wrong credentials", () => {
         homeSaucePage.typeUsername("wrong_username")
@@ -20,7 +18,6 @@ describe("Wrong Credentials Suite", () => {
         homeSaucePage.elements.errorMessageContainer()
             .should('contain', 'Username and password do not match any user in this service')
     })
-
     //Empty username and empty password case
     it("Empty username and empty password", () => {
         //Clicking on login
@@ -31,7 +28,6 @@ describe("Wrong Credentials Suite", () => {
         homeSaucePage.elements.errorMessageContainer().should('contain', 'Username is required')
 
     })
-
     //Empty password login
     it("Empty password", () => {
         //Filling the username with something
@@ -42,6 +38,5 @@ describe("Wrong Credentials Suite", () => {
         homeSaucePage.elements.errorMessageContainer().should('be.visible')
         //The error message must contain Password is required
         homeSaucePage.elements.errorMessageContainer().should('contain', 'Password is required')
-
     })
 })

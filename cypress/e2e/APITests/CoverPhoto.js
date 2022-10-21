@@ -1,21 +1,21 @@
 //Pojo for the coverPhotos endpoint
-export default class CoverPhoto{
+export default class CoverPhoto {
 
-    constructor(id,idBook,url){
+    constructor(id, idBook, url) {
         this.id = id
         this.idBook = idBook
         this.url = url
     }
 
-    getId(){
+    getId() {
         return this.id
     }
 
-    getBook(){
+    getBook() {
         return this.idBook
     }
 
-    getUrl(){
+    getUrl() {
         return this.url
     }
 }
